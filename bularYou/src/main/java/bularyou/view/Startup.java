@@ -1,10 +1,15 @@
 package bularyou.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import bularyou.controller.FabricanteController;
+import bularyou.controller.MedicamentoController;
 import bularyou.controller.TerminalController;
 import bularyou.controller.UsuarioController;
+import bularyou.domain.Fabricante;
+import bularyou.domain.Medicamento;
 import bularyou.domain.Usuario;
 import bularyou.security.Papel;
 import bularyou.util.Constantes;
@@ -37,11 +42,13 @@ public class Startup {
 					controlador.isArquivo());
 
 		} while (logado == null);
-
-		// TODO escrever medicamento controller
+		
 		UsuarioController usuarioControlador = new UsuarioController(logado,
 				controlador.isArquivo());
 
+		MedicamentoController medicamentoController = new 
+				MedicamentoController(logado, controlador.isArquivo());
+		
 		String opcaoPrincipal = Constantes.VALOR_OPCAO_DEFAULT;
 		String opcaoMedicamento = Constantes.VALOR_OPCAO_DEFAULT;
 
@@ -94,10 +101,75 @@ public class Startup {
 				break;
 
 			case "2":
-				Terminal.genericoMenu();
+				Terminal.menuMedicamento();
 				opcaoMedicamento = entrada.next();
 
+				if(opcaoMedicamento.equals("1")){
+					
+					System.out.println("Informe o código do medicamento:");
+					String id = entrada.next();
+
+					System.out.println("Informe o nome do medicamento:");
+					String nome = entrada.next();
+
+					System.out.println("Informe a descrição do medicamento:");
+					String descricao = entrada.next();
+
+					System.out.println("Informe o valor de compra do medicamento:");
+					Double valorCompra = Double.parseDouble(entrada.next());
+					
+					System.out.println("Informe o valor de venda do medicamento:");
+					Double valorVenda = Double.parseDouble(entrada.next());	
+					
+					System.out.println("Informa o fabricante:");
+					String fabricante = entrada.next();
+					
+					System.out.println("Necessita de receita? (S/N)");
+					String receita = entrada.next();
+					boolean necessitaReceita = false;
+					
+					if(receita.equals("S")) {
+						necessitaReceita = true;
+					}
+					
+					System.out.println("Informe o tipo da receita:");
+					String tipoReceita = entrada.next();
+					
+					System.out.println("Informe se exite interação medicamentosa:");
+					String interacao = entrada.next();
+
+					System.out.println("Informe a posologia:");
+					String posologia = entrada.next();
+					
+					System.out.println("Informe o(s) principio(s) ativo:");
+					String principiosAtivo = entrada.next();
+					
+					System.out.println("Informe indicação:");
+					String indicacoes = entrada.next();
+
+					System.out.println("informe classe(s) terapeutica:");
+					String classesTerapeuticas = entrada.next();
+
+					System.out.println("Informe a(s) categoria(s):");
+					String categorias = entrada.next();
+
+					medicamentoController.salvar(new Medicamento(id, nome, descricao,
+							valorCompra, valorVenda, fabricante, necessitaReceita, tipoReceita,
+							interacao, posologia, principiosAtivo, indicacoes, classesTerapeuticas,
+							categorias));
+					
+					List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+					medicamentos.add(new Medicamento(id, nome, descricao,
+							valorCompra, valorVenda, fabricante, necessitaReceita, tipoReceita,
+							interacao, posologia, principiosAtivo, indicacoes, classesTerapeuticas,
+							categorias));
+					
+					medicamentos.forEach(System.out::println);
+					
+				} 	
+			
 				break;
+			
 			}
 
 		} while (!opcaoPrincipal.equals("0"));

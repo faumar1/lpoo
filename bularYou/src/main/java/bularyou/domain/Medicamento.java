@@ -15,10 +15,10 @@ public class Medicamento extends Produto {
 	private String tipoReceita;
 	private String interacao;
 	private String posologia;
-	private List<PrincipioAtivo> principiosAtivo;
-	private List<Indicacao> indicacoes;
-	private List<ClasseTerapeutica> classesTerapeuticas;
-	private List<Categoria> categorias;	
+	private String principiosAtivo;
+	private String indicacoes;
+	private String classesTerapeuticas;
+	private String categorias;	
 	
 	/**
 	 * Construtor da classe Medicamento
@@ -29,14 +29,10 @@ public class Medicamento extends Produto {
 		this.necessitaReceita = false;
 		this.tipoReceita = "Nï¿½o especificada";
 		this.posologia = "Nï¿½o especificda";
-		this.principiosAtivo = new ArrayList<PrincipioAtivo>();
-		this.principiosAtivo.add(new PrincipioAtivo());
-		this.indicacoes = new ArrayList<Indicacao>();
-		this.indicacoes.add(new Indicacao());
-		this.classesTerapeuticas = new ArrayList<ClasseTerapeutica>();
-		this.classesTerapeuticas.add(new ClasseTerapeutica());
-		this.categorias = new ArrayList<Categoria>();
-		this.categorias.add(new Categoria());
+		this.principiosAtivo = "Não definido";
+		this.indicacoes = "Não definido";
+		this.classesTerapeuticas = "Não definida";
+		this.categorias = "Não definida";
 	}
 	
 	/**
@@ -52,13 +48,13 @@ public class Medicamento extends Produto {
 	 * @param categorias
 	 * 
 	 */
-	public Medicamento(String nome, String descricao, Double valorCompra, 
-			Double valorVenda, PessoaJuridica fabricante, boolean necessitaReceita,
+	public Medicamento(String id, String nome, String descricao, Double valorCompra, 
+			Double valorVenda, String fabricante, boolean necessitaReceita,
 			String tipoReceita, String interacao, String posologia, 
-			List<PrincipioAtivo> principiosAtivo, List<Indicacao> indicacoes,
-			List<ClasseTerapeutica> classesTerapeuticas, List<Categoria> categorias) {
+			String principiosAtivo, String indicacoes,
+			String classesTerapeuticas, String categorias) {
 		
-		super(nome, descricao, valorCompra, valorVenda, fabricante);
+		super(id, nome, descricao, valorCompra, valorVenda, fabricante);
 		this.necessitaReceita = necessitaReceita;
 		this.tipoReceita = tipoReceita;
 		this.interacao = interacao;
@@ -101,35 +97,35 @@ public class Medicamento extends Produto {
 		this.posologia = posologia;
 	}
 
-	public List<PrincipioAtivo> getPrincipiosAtivo() {
+	public String getPrincipiosAtivo() {
 		return principiosAtivo;
 	}
 
-	public void setPrincipiosAtivo(List<PrincipioAtivo> principiosAtivo) {
+	public void setPrincipiosAtivo(String principiosAtivo) {
 		this.principiosAtivo = principiosAtivo;
 	}
 
-	public List<Indicacao> getIndicacoes() {
+	public String getIndicacoes() {
 		return indicacoes;
 	}
 
-	public void setIndicacoes(List<Indicacao> indicacoes) {
+	public void setIndicacoes(String indicacoes) {
 		this.indicacoes = indicacoes;
 	}
 
-	public List<ClasseTerapeutica> getClassesTerapeuticas() {
+	public String getClassesTerapeuticas() {
 		return classesTerapeuticas;
 	}
 
-	public void setClassesTerapeuticas(List<ClasseTerapeutica> classesTerapeuticas) {
+	public void setClassesTerapeuticas(String classesTerapeuticas) {
 		this.classesTerapeuticas = classesTerapeuticas;
 	}
 
-	public List<Categoria> getCategorias() {
+	public String getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
+	public void setCategorias(String categorias) {
 		this.categorias = categorias;
 	}
 
@@ -150,22 +146,6 @@ public class Medicamento extends Produto {
 			receita = "Sim";
 		}
 		
-		for(PrincipioAtivo principioAtivo: this.principiosAtivo) {
-			principiosAtivo = principiosAtivo + principioAtivo.getPrincipioAtivo() + "\n";
-		}
-		
-		for(Indicacao indicacao: this.indicacoes) {
-			indicacoes = indicacoes + indicacao.getIndicacao() + "\n";
-		}
-
-		for(ClasseTerapeutica classeTerapeutica: this.classesTerapeuticas) {
-			classesTerapeuticas = classesTerapeuticas + classeTerapeutica.getClasseTerapeutica() + "\n";
-		}
-
-		for(Categoria categoria: this.categorias) {
-			categorias = categorias + categoria.getCategoria() + "\n";
-		}
-
 		return "Nome " + this.getNome() + " - Descriï¿½ï¿½o: " + this.getDescricao()
 				+ " - Valor de Compra: " + this.getValorCompra() 
 				+ " - Valor de Venda: " + this.getValorVenda()
