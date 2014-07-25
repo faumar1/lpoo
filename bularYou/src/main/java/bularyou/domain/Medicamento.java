@@ -1,7 +1,6 @@
 package bularyou.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import bularyou.util.Constantes;
 
 /**
  * Entidade Medicamento.
@@ -18,23 +17,23 @@ public class Medicamento extends Produto {
 	private String principiosAtivo;
 	private String indicacoes;
 	private String classesTerapeuticas;
-	private String categorias;	
-	
+	private String categorias;
+
 	/**
 	 * Construtor da classe Medicamento
 	 * 
 	 */
-	public Medicamento(){
+	public Medicamento() {
 		super();
 		this.necessitaReceita = false;
-		this.tipoReceita = "Nï¿½o especificada";
-		this.posologia = "Nï¿½o especificda";
-		this.principiosAtivo = "Não definido";
-		this.indicacoes = "Não definido";
-		this.classesTerapeuticas = "Não definida";
-		this.categorias = "Não definida";
+		this.tipoReceita = Constantes.NAO_INFORMADO;
+		this.posologia = Constantes.NAO_INFORMADO;
+		this.principiosAtivo = Constantes.NAO_INFORMADO;
+		this.indicacoes = Constantes.NAO_INFORMADO;
+		this.classesTerapeuticas = Constantes.NAO_INFORMADO;
+		this.categorias = Constantes.NAO_INFORMADO;
 	}
-	
+
 	/**
 	 * Construtor da classe Medicamento
 	 * 
@@ -48,13 +47,13 @@ public class Medicamento extends Produto {
 	 * @param categorias
 	 * 
 	 */
-	public Medicamento(String id, String nome, String descricao, Double valorCompra, 
-			Double valorVenda, String fabricante, boolean necessitaReceita,
-			String tipoReceita, String interacao, String posologia, 
-			String principiosAtivo, String indicacoes,
+	public Medicamento(String id, String nome, String descricao,
+			Double valorCompra, Double valorVenda, PessoaJuridica fabricante,
+			boolean necessitaReceita, String tipoReceita, String interacao,
+			String posologia, String principiosAtivo, String indicacoes,
 			String classesTerapeuticas, String categorias) {
-		
-		super(id, nome, descricao, valorCompra, valorVenda, fabricante);
+
+		super(nome, descricao, valorCompra, valorVenda, fabricante);
 		this.necessitaReceita = necessitaReceita;
 		this.tipoReceita = tipoReceita;
 		this.interacao = interacao;
@@ -135,29 +134,29 @@ public class Medicamento extends Produto {
 	 */
 	@Override
 	public String toString() {
-		
+
 		String principiosAtivo = "";
 		String indicacoes = "";
-		String classesTerapeuticas= "";
+		String classesTerapeuticas = "";
 		String categorias = "";
 		String receita = "Nï¿½o";
-		
-		if(isNecessitaReceita()) {
+
+		if (isNecessitaReceita()) {
 			receita = "Sim";
 		}
-		
-		return "Nome " + this.getNome() + " - Descriï¿½ï¿½o: " + this.getDescricao()
-				+ " - Valor de Compra: " + this.getValorCompra() 
-				+ " - Valor de Venda: " + this.getValorVenda()
-				+ " - Fabricante: " + this.getFabricante().toString()
+
+		return "Nome " + this.getNome() + " - Descriï¿½ï¿½o: "
+				+ this.getDescricao() + " - Valor de Compra: "
+				+ this.getValorCompra() + " - Valor de Venda: "
+				+ this.getValorVenda() + " - Fabricante: "
+				+ this.getFabricante().toString()
 				+ " - Necessita de Receita?: " + receita
 				+ " - Tipo da Receita: " + this.tipoReceita
-				+ " - Interaï¿½ï¿½o: " + this.interacao
-				+ " - Posologia: " + this.posologia
-				+ " - Princï¿½pio(s) ativo: " + principiosAtivo
-				+ " - Indicaï¿½ï¿½es: " + indicacoes
+				+ " - Interaï¿½ï¿½o: " + this.interacao + " - Posologia: "
+				+ this.posologia + " - Princï¿½pio(s) ativo: "
+				+ principiosAtivo + " - Indicaï¿½ï¿½es: " + indicacoes
 				+ " - Classe(s) Terapeutica(s): " + classesTerapeuticas
 				+ " - Categorias: " + categorias;
 	}
-	
+
 }

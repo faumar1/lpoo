@@ -8,6 +8,12 @@ import bularyou.interfaces.Entidade;
 import bularyou.interfaces.PersistenciaDao;
 import bularyou.util.Constantes;
 
+/**
+ * Camada de persistência genérica.
+ * 
+ * @author gustavo
+ *
+ */
 public class GenericoPersistencia implements PersistenciaDao {
 	private Map<String, Entidade> lista;
 

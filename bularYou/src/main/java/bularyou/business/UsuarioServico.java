@@ -30,7 +30,7 @@ public class UsuarioServico extends GenericoServico {
 	}
 
 	/**
-	 * Autenticar um Usuário
+	 * Autentica um Usuário no sistema.
 	 */
 	public static Usuario autenticar(String login, String senha, boolean arquivo) {
 		if (arquivo) {
@@ -40,7 +40,7 @@ public class UsuarioServico extends GenericoServico {
 			return autenticarVolatil(login, senha);
 		}
 	}
-
+	
 	private static Usuario autenticarArquivo(String login, String senha) {
 		return null;
 	}

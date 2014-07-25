@@ -1,6 +1,7 @@
 package bularyou.domain;
 
 import bularyou.interfaces.Entidade;
+import bularyou.util.Constantes;
 
 /**
  * Entidade Pessoa.
@@ -12,7 +13,6 @@ public class Pessoa implements Entidade {
 
 	private String id;
 	private String nome;
-	private Endereco endereco;
 
 	/**
 	 * Construtor da classe Pessoa
@@ -20,9 +20,8 @@ public class Pessoa implements Entidade {
 	 * @param endereco
 	 * @param cidade
 	 */
-	public Pessoa(String nome, Endereco endereco) {
+	public Pessoa(String nome) {
 		this.nome = nome;
-		this.endereco = endereco;
 	}
 
 	/**
@@ -30,8 +29,7 @@ public class Pessoa implements Entidade {
 	 * 
 	 */
 	public Pessoa() {
-		this.nome = "N�o Especificado";
-		this.endereco = new Endereco();
+		this.nome = Constantes.NAO_INFORMADO;
 	}
 
 	public String getNome() {
@@ -40,14 +38,6 @@ public class Pessoa implements Entidade {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	/**

@@ -8,6 +8,12 @@ import bularyou.exception.BusinessException;
 import bularyou.interfaces.Entidade;
 import bularyou.util.Mensagens;
 
+/**
+ * Regras de negócio de medicamento.
+ * 
+ * @author fausto
+ *
+ */
 public class MedicamentoServico extends GenericoServico {
 
 	/**
@@ -18,7 +24,7 @@ public class MedicamentoServico extends GenericoServico {
 	public MedicamentoServico(Usuario usuario, boolean arquivo) {
 		super(usuario, arquivo);
 	}
-	
+
 	/**
 	 * Salva um medicamento.
 	 * 
@@ -27,7 +33,7 @@ public class MedicamentoServico extends GenericoServico {
 	public void salvarMedicamento(Medicamento medicamento) {
 		this.salvar(medicamento);
 	}
-	
+
 	/**
 	 * Remove um medicamento.
 	 * 
@@ -38,16 +44,16 @@ public class MedicamentoServico extends GenericoServico {
 			throw new BusinessException(Mensagens.MEDICAMENTO_INEXISTENTE);
 		}
 	}
-	
+
 	/**
 	 * Lista todos os medicamentos.
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public  List<Medicamento>listarMedicamentos() {
+	public List<Medicamento> listarMedicamentos() {
 		return (List<Medicamento>) this.listarTodos();
 	}
-	
+
 	/**
 	 * Lista um medicamento.
 	 * 
@@ -56,7 +62,7 @@ public class MedicamentoServico extends GenericoServico {
 	 */
 	public Medicamento listarCategoria(Medicamento medicamento, String criterio) {
 		Entidade resultado = this.pesquisar(medicamento, criterio);
-		
+
 		if (resultado == null) {
 			throw new BusinessException(Mensagens.REGISTRO_NAO_ENCONTRADO);
 		}

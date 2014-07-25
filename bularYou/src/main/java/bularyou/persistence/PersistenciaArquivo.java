@@ -10,7 +10,6 @@ public class PersistenciaArquivo implements PersistenciaDao {
 	@Override
 	public void salvar(Entidade entidade) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

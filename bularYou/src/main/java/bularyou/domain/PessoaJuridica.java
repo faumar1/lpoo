@@ -1,5 +1,7 @@
 package bularyou.domain;
 
+import bularyou.util.Constantes;
+
 /**
  * Entidade PessoaJuridica.
  * 
@@ -21,8 +23,8 @@ public class PessoaJuridica extends Pessoa {
 	 * @param inscricaoEstadual
 	 */
 	public PessoaJuridica(String razaoSocial, String nomeFantasia, String cnpj,
-			String inscricaoEstadual, Endereco endereco) {		
-		super(razaoSocial, endereco);
+			String inscricaoEstadual) {
+		super(razaoSocial);
 		this.nomeFantasia = nomeFantasia;
 		this.cnpj = cnpj;
 		this.inscricaoEstadual = inscricaoEstadual;
@@ -32,13 +34,17 @@ public class PessoaJuridica extends Pessoa {
 	 * Construtor da classe PessoaJuridica
 	 * 
 	 */
-	public PessoaJuridica() {		
-		super();
-		this.nomeFantasia = "N�o especificado";
-		this.cnpj = "N�o especificado";
-		this.inscricaoEstadual = "N�o especificada";
+	public PessoaJuridica() {
+		this.nomeFantasia = Constantes.NAO_INFORMADO;
+		this.cnpj = Constantes.NAO_INFORMADO;
+		this.inscricaoEstadual = Constantes.NAO_INFORMADO;
 	}
-	
+
+	public PessoaJuridica(String nomeFantasia) {
+		this(Constantes.NAO_INFORMADO, Constantes.NAO_INFORMADO,
+				Constantes.NAO_INFORMADO, nomeFantasia);
+	}
+
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
@@ -71,8 +77,7 @@ public class PessoaJuridica extends Pessoa {
 	public String toString() {
 		return "Raz�o Social: " + this.getNome() + " - Fantasia: "
 				+ this.nomeFantasia + " - CNPJ: " + this.cnpj
-				+ " - Inscri��o Estadual: " + this.inscricaoEstadual
-				+ " - Endereco: " + getEndereco().toString();
+				+ " - Inscri��o Estadual: " + this.inscricaoEstadual;
 	}
-	
+
 }

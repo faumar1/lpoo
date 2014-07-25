@@ -2,6 +2,7 @@ package bularyou.domain;
 
 import bularyou.interfaces.Entidade;
 import bularyou.security.Papel;
+import bularyou.util.Constantes;
 
 /**
  * Entidade Usuário.
@@ -38,7 +39,7 @@ public class Usuario implements Entidade {
 	 * @param senha
 	 */
 	public Usuario(String login, String senha) {
-		this(login, senha, "Não Especificado.", Papel.USUARIO);
+		this(login, senha, Constantes.NAO_INFORMADO, Papel.USUARIO);
 	}
 
 	public Usuario(String login) {

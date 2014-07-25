@@ -18,4 +18,14 @@ public final class Mensagens {
 	public static final String MENSAGEM_LOGIN = "Informe o login do usuÃ¡rio:";
 	public static final String MENSAGEM_SENHA = "Informe a senha do usuÃ¡rio:";
 	public static final String ESCOLHER_ARMAZENAMENTO = "Deseja armazenar os dados em arquivo? (S/N)";
+	public static final String INPUT_LOGIN = "Informe o seu login:";
+	public static final String INPUT_SENHA = "Informe a sua senha:";
+	public static final String INPUT_NOME = "Informe o seu nome:";
+	public static final String INPUT_PESQUISAR_NOME = "Informe o login que deseja pesquisar:";
+	public static final String INPUT_REMOVER_NOME = "Informe o login do usuário que deseja remover:";
+	public static final String MSG_INVALIDA = "Opção Inválida!";
+	public static final String LOGOFF = "Saindo do sistema!";
+	public static final String COD_MEDICAMENTO = "Informe o código do medicamento:";
+	public static final String NOME_MEDICAMENTO = "Informe o nome do medicamento:";
+	
 }

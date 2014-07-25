@@ -6,6 +6,12 @@ import bularyou.business.UsuarioServico;
 import bularyou.domain.Usuario;
 import bularyou.exception.BusinessException;
 
+/**
+ * Controller de usuário.
+ * 
+ * @author gustavo
+ *
+ */
 public class UsuarioController {
 
 	private UsuarioServico servico;
@@ -14,6 +20,14 @@ public class UsuarioController {
 		this.servico = new UsuarioServico(usuario, arquivo);
 	}
 
+	/**
+	 * Autentica um usuário no sistema.
+	 * 
+	 * @param login
+	 * @param senha
+	 * @param arquivo
+	 * @return Usuario
+	 */
 	public static Usuario autenticar(String login, String senha, boolean arquivo) {
 		Usuario autenticado = null;
 		try {
@@ -24,6 +38,11 @@ public class UsuarioController {
 		return autenticado;
 	}
 
+	/**
+	 * Cadastra um usuário.
+	 * 
+	 * @param usuario
+	 */
 	public void salvar(Usuario usuario) {
 		try {
 			servico.salvar(usuario);
@@ -32,6 +51,13 @@ public class UsuarioController {
 		}
 	}
 
+	/**
+	 * Pesquisa um usuário.
+	 * 
+	 * @param usuario
+	 * @param criterio
+	 * @return
+	 */
 	public Usuario pesquisar(Usuario usuario, String criterio) {
 		Usuario encontrado = null;
 
@@ -44,10 +70,20 @@ public class UsuarioController {
 		return encontrado;
 	}
 
+	/**
+	 * Lista todos os usuários cadastrados.
+	 * 
+	 * @return List<Usuario>
+	 */
 	public List<Usuario> listarUsuarios() {
 		return this.servico.listarUsuarios();
 	}
 
+	/**
+	 * Remove um usuário.
+	 * 
+	 * @param usuario
+	 */
 	public void remover(Usuario usuario) {
 		try {
 			this.servico.removerUsuario(usuario);

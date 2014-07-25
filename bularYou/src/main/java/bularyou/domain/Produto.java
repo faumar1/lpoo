@@ -1,6 +1,7 @@
 package bularyou.domain;
 
 import bularyou.interfaces.Entidade;
+import bularyou.util.Constantes;
 
 /**
  * Entidade Produto
@@ -39,8 +40,8 @@ public class Produto implements Entidade {
 	 * 
 	 */
 	public Produto() {
-		this.nome = "N�o especificado";
-		this.descricao = "N�o especificada";
+		this.nome = Constantes.NAO_INFORMADO;
+		this.descricao = Constantes.NAO_INFORMADO;
 		this.valorCompra = 0.0;
 		this.valorVenda = 0.0;
 		this.fabricante = new PessoaJuridica();

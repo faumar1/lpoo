@@ -4,10 +4,21 @@ import java.util.Scanner;
 
 import bularyou.util.Mensagens;
 
+/**
+ * Controller de terminal.
+ * 
+ * @author gustavo
+ *
+ */
 public class TerminalController {
 
 	private boolean isArquivo;
-
+	
+	/**
+	 * Escolhe o tipo de armazenamento.
+	 *  
+	 * @param entrada
+	 */
 	public void escolherTipoArmazenamento(Scanner entrada) {
 		String opcao;
 

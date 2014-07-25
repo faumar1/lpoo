@@ -22,7 +22,7 @@ public abstract class GenericoServico {
 
 	public GenericoServico(Usuario usuario, boolean arquivo) {
 		this.usuario = usuario;
-		
+
 		if (arquivo) {
 			this.persistencia = new PersistenciaArquivo();
 		} else {
@@ -56,7 +56,7 @@ public abstract class GenericoServico {
 	public Collection<? extends Entidade> listarTodos() {
 		return this.persistencia.listarTodos();
 	}
-	
+
 	/**
 	 * Lista uma entidade de acordo com um critério.
 	 * 
@@ -65,7 +65,7 @@ public abstract class GenericoServico {
 	 */
 	public Entidade pesquisar(Entidade entidade, String criterio) {
 		Entidade resultado = this.persistencia.listar(entidade, criterio);
-		
+
 		if (resultado == null) {
 			throw new BusinessException(Mensagens.REGISTRO_NAO_ENCONTRADO);
 		}
