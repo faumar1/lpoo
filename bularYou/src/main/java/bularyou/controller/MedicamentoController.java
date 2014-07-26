@@ -6,6 +6,7 @@ import bularyou.business.MedicamentoServico;
 import bularyou.domain.Medicamento;
 import bularyou.domain.Usuario;
 import bularyou.exception.BusinessException;
+import bularyou.util.Mensagens;
 
 /**
  * Controlador de Medicamento.
@@ -29,6 +30,7 @@ public class MedicamentoController {
 	public void salvar(Medicamento medicamento) {
 		try {
 			servico.salvar(medicamento);
+			System.out.println(Mensagens.MEDICAMENTO_CADASTRO_SUCESSO);
 		} catch (BusinessException exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -42,6 +44,7 @@ public class MedicamentoController {
 	public void remover(Medicamento medicamento) {
 		try {
 			this.servico.removerMedicamento(medicamento);
+			System.out.println(Mensagens.MEDICAMENTO_REMOCAO_SUCESSO);
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 		}
@@ -54,6 +57,25 @@ public class MedicamentoController {
 	 */
 	public List<Medicamento> listarMedicamentos() {
 		return this.servico.listarMedicamentos();
+	}
+	
+	/**
+	 * Pesquisa um medicamento por ID.
+	 * 
+	 * @param usuario
+	 * @param criterio
+	 * @return
+	 */
+	public Medicamento pesquisar(Medicamento medicamento, String criterio) {
+		Medicamento encontrado = null;
+
+		try {
+			encontrado = servico.pesquisar(medicamento, criterio);
+		} catch (BusinessException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return encontrado;
 	}
 
 }

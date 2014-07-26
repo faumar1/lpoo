@@ -36,7 +36,10 @@ public class GenericoPersistencia implements PersistenciaDao {
 	 * @param entidade
 	 */
 	public Boolean remover(Entidade entidade) {
-		return this.lista.values().remove(entidade);
+		if(this.lista.remove(entidade.getId()) != null) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -55,7 +58,7 @@ public class GenericoPersistencia implements PersistenciaDao {
 	public Entidade listar(Entidade entidade, String criterio) {
 
 		switch (criterio) {
-		case Constantes.CRITEIRO_ID:
+		case Constantes.CRITERIO_ID:
 			return this.lista.get(entidade.getId());
 		default:
 			return null;

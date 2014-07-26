@@ -1,11 +1,13 @@
 package bularyou.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bularyou.domain.Medicamento;
 import bularyou.domain.Usuario;
 import bularyou.exception.BusinessException;
 import bularyou.interfaces.Entidade;
+import bularyou.util.Constantes;
 import bularyou.util.Mensagens;
 
 /**
@@ -49,9 +51,9 @@ public class MedicamentoServico extends GenericoServico {
 	 * Lista todos os medicamentos.
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Medicamento> listarMedicamentos() {
-		return (List<Medicamento>) this.listarTodos();
+		return new ArrayList(this.listarTodos());
 	}
 
 	/**
@@ -60,8 +62,19 @@ public class MedicamentoServico extends GenericoServico {
 	 * @param medicamento
 	 * @param criterio
 	 */
-	public Medicamento listarCategoria(Medicamento medicamento, String criterio) {
-		Entidade resultado = this.pesquisar(medicamento, criterio);
+	public Medicamento pesquisar(Medicamento medicamento, String criterio) {
+		Entidade resultado = null;
+		
+		switch (criterio) {
+		case Constantes.CRITERIO_ID:
+			resultado = super.pesquisar(medicamento, criterio);
+		case Constantes.CRITERIO_NOME:
+			for (Medicamento med : this.listarMedicamentos()) {
+				if(med.getNome().contains(medicamento.getNome())) {
+					resultado = med;
+				}
+			}
+		}
 
 		if (resultado == null) {
 			throw new BusinessException(Mensagens.REGISTRO_NAO_ENCONTRADO);
@@ -69,4 +82,5 @@ public class MedicamentoServico extends GenericoServico {
 
 		return (Medicamento) resultado;
 	}
+	
 }

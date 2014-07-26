@@ -3,8 +3,8 @@ package bularyou.view;
 public class Terminal {
 	
 	public static void menuPrincipal() {
-		System.out.println("Informe uma das opÃ§Ãµes abaixo:");
-		System.out.println("1 - UsuÃ¡rios");
+		System.out.println("Informe uma das opções abaixo:");
+		System.out.println("1 - Usuários");
 		System.out.println("2 - Medicamentos");
 	}
 	
@@ -12,15 +12,18 @@ public class Terminal {
 		System.out.println("1 - Novo");
 		System.out.println("2 - Pesquisar pelo login");
 		System.out.println("3 - Listar todos");
-		System.out.println("4 - Remover");
+		System.out.println("4 - Atualizar dados");
+		System.out.println("5 - Remover");
 	}
 
 	public static void menuMedicamento() {
 		System.out.println("1 - Novo");
-		System.out.println("2 - Pesquisar");
-		System.out.println("3 - Listar todos");
-		System.out.println("4 - Remover");
-		System.out.println("5 - Fabricante");
+		System.out.println("2 - Pesquisar por ID");
+		System.out.println("3 - Pesquisar por Nome");
+		System.out.println("4 - Listar todos");
+		System.out.println("5 - Atualizar medicamento");
+		System.out.println("6 - Remover");
+		/*System.out.println("5 - Fabricante");*/
 	}
 
 	public static void menuFabricante() {

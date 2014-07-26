@@ -150,7 +150,7 @@ public class Usuario implements Entidade {
 	 */
 	@Override
 	public String toString() {
-		return "Usu√°rio - Nome: " + this.nome + "\n - Login: " + this.login
+		return "Usu·rio - Nome: " + this.nome + "\n - Login: " + this.login
 				+ "\n - Senha: " + this.senha + "\n - Perfil: "
 				+ this.papel.name();
 	}

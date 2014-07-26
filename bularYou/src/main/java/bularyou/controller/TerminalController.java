@@ -31,7 +31,7 @@ public class TerminalController {
 					this.isArquivo = true;
 				}
 			} else {
-				System.out.println("Op√ß√£o inv√°lida!");
+				System.out.println("OpÁ„o inv·lida!");
 			}
 
 		} while (!(opcao.equalsIgnoreCase("S") || opcao.equalsIgnoreCase("N")));

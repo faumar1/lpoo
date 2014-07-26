@@ -75,9 +75,9 @@ public class PessoaJuridica extends Pessoa {
 	 */
 	@Override
 	public String toString() {
-		return "Razï¿½o Social: " + this.getNome() + " - Fantasia: "
+		return "Razão Social: " + this.getNome() + " - Fantasia: "
 				+ this.nomeFantasia + " - CNPJ: " + this.cnpj
-				+ " - Inscriï¿½ï¿½o Estadual: " + this.inscricaoEstadual;
+				+ " - Inscrição Estadual: " + this.inscricaoEstadual;
 	}
 
 }

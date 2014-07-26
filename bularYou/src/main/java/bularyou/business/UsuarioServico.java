@@ -107,10 +107,10 @@ public class UsuarioServico extends GenericoServico {
 		List<Usuario> usuarios = this.listarUsuarios();
 
 		switch (criterio) {
-		case Constantes.CRITEIRO_ID:
+		case Constantes.CRITERIO_ID:
 			usuarios.sort(Comparator.comparing(Usuario::getId));
 			break;
-		case Constantes.CRITEIRO_NOME:
+		case Constantes.CRITERIO_NOME:
 			usuarios.sort(Comparator.comparing(Usuario::getNome));
 			break;
 		}

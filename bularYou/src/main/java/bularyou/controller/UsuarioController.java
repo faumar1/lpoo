@@ -5,6 +5,7 @@ import java.util.List;
 import bularyou.business.UsuarioServico;
 import bularyou.domain.Usuario;
 import bularyou.exception.BusinessException;
+import bularyou.util.Mensagens;
 
 /**
  * Controller de usuário.
@@ -46,6 +47,7 @@ public class UsuarioController {
 	public void salvar(Usuario usuario) {
 		try {
 			servico.salvar(usuario);
+			System.out.println(Mensagens.USUARIO_CADASTRO_SUCESSO);
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 		}
@@ -87,6 +89,7 @@ public class UsuarioController {
 	public void remover(Usuario usuario) {
 		try {
 			this.servico.removerUsuario(usuario);
+			System.out.println(Mensagens.USUARIO_REMOCAO_SUCESSO);
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 		}

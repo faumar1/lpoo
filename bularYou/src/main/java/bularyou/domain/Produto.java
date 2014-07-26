@@ -6,16 +6,16 @@ import bularyou.util.Constantes;
 /**
  * Entidade Produto
  * 
- * @author Fausto Sousa
+ * @author Fausto Sousa, Alisson Sena
  */
-public class Produto implements Entidade {
+public abstract class Produto implements Entidade {
 	
-	private String id;
-	private String nome;
-	private String descricao;
-	private Double valorCompra;
-	private Double valorVenda;
-	private PessoaJuridica fabricante;
+	protected String id;
+	protected String nome;
+	protected String descricao;
+	protected Double valorCompra;
+	protected Double valorVenda;
+	protected PessoaJuridica fabricante;
 	
 	/**
 	 * Construtor da classe Produto
@@ -26,8 +26,9 @@ public class Produto implements Entidade {
 	 * @param valorVenda
 	 * @param fabricante
 	 */
-	public Produto(String nome, String descricao, Double valorCompra, 
+	public Produto(String id, String nome, String descricao, Double valorCompra, 
 			Double valorVenda, PessoaJuridica fabricante) {
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.valorCompra = valorCompra;
@@ -39,12 +40,8 @@ public class Produto implements Entidade {
 	 * Construtor da classe Produto
 	 * 
 	 */
-	public Produto() {
-		this.nome = Constantes.NAO_INFORMADO;
-		this.descricao = Constantes.NAO_INFORMADO;
-		this.valorCompra = 0.0;
-		this.valorVenda = 0.0;
-		this.fabricante = new PessoaJuridica();
+	public Produto(String id) {
+		this(id, Constantes.NAO_INFORMADO, Constantes.NAO_INFORMADO, 0.0, 0.0, new PessoaJuridica());
 	}
 
 	public String getNome() {
@@ -88,19 +85,19 @@ public class Produto implements Entidade {
 	}
 
 	/**
-	 * Reescrita do mï¿½todo toString.
+	 * Reescrita do método toString.
 	 * 
 	 */
 	@Override
 	public String toString() {
-		return "Produto - Nome: " + this.nome + " - Descriï¿½ï¿½o: " + this.descricao
+		return "Produto - Nome: " + this.nome + " - Descrição: " + this.descricao
 				+ " - Valor de Compra: " + this.valorCompra
 				+ " - Valor de Venda: " + this.valorVenda
 				+ " - Fabricante: " + this.fabricante.toString();
 	}
 
 	/**
-	 * Implementaï¿½ï¿½o da interface Entidade.
+	 * Implementação da interface Entidade.
 	 * 
 	 */
 	@Override

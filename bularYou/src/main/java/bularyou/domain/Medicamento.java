@@ -5,7 +5,7 @@ import bularyou.util.Constantes;
 /**
  * Entidade Medicamento.
  * 
- * @author Fausto Sousa
+ * @author Fausto Sousa, Alisson Sena
  *
  */
 public class Medicamento extends Produto {
@@ -23,8 +23,9 @@ public class Medicamento extends Produto {
 	 * Construtor da classe Medicamento
 	 * 
 	 */
-	public Medicamento() {
-		super();
+	
+	public Medicamento(String id) {
+		super(id);
 		this.necessitaReceita = false;
 		this.tipoReceita = Constantes.NAO_INFORMADO;
 		this.posologia = Constantes.NAO_INFORMADO;
@@ -53,7 +54,7 @@ public class Medicamento extends Produto {
 			String posologia, String principiosAtivo, String indicacoes,
 			String classesTerapeuticas, String categorias) {
 
-		super(nome, descricao, valorCompra, valorVenda, fabricante);
+		super(id, nome, descricao, valorCompra, valorVenda, fabricante);
 		this.necessitaReceita = necessitaReceita;
 		this.tipoReceita = tipoReceita;
 		this.interacao = interacao;
@@ -129,34 +130,29 @@ public class Medicamento extends Produto {
 	}
 
 	/**
-	 * Reescrita do mï¿½todo toString.
+	 * Reescrita do método toString.
 	 * 
 	 */
 	@Override
 	public String toString() {
-
-		String principiosAtivo = "";
-		String indicacoes = "";
-		String classesTerapeuticas = "";
-		String categorias = "";
-		String receita = "Nï¿½o";
-
+		
+		String receita = "Não";
 		if (isNecessitaReceita()) {
 			receita = "Sim";
 		}
 
-		return "Nome " + this.getNome() + " - Descriï¿½ï¿½o: "
-				+ this.getDescricao() + " - Valor de Compra: "
-				+ this.getValorCompra() + " - Valor de Venda: "
-				+ this.getValorVenda() + " - Fabricante: "
-				+ this.getFabricante().toString()
-				+ " - Necessita de Receita?: " + receita
-				+ " - Tipo da Receita: " + this.tipoReceita
-				+ " - Interaï¿½ï¿½o: " + this.interacao + " - Posologia: "
-				+ this.posologia + " - Princï¿½pio(s) ativo: "
-				+ principiosAtivo + " - Indicaï¿½ï¿½es: " + indicacoes
-				+ " - Classe(s) Terapeutica(s): " + classesTerapeuticas
-				+ " - Categorias: " + categorias;
+		return "\n- ID: " + this.id + "\n- Nome: " + this.nome + "\n- Descrição: "
+				+ this.descricao + "\n- Valor de Compra: "
+				+ this.valorCompra + "\n- Valor de Venda: "
+				+ this.valorVenda + "\n- Fabricante: "
+				+ this.fabricante.getNomeFantasia()
+				+ "\n- Necessita de Receita?: " + receita
+				+ "\n- Tipo da Receita: " + this.tipoReceita
+				+ "\n- Interação: " + this.interacao + "\n- Posologia: "
+				+ this.posologia + "\n- Princípio(s) ativo: "
+				+ this.principiosAtivo + "\n- Indicações: " + this.indicacoes
+				+ "\n- Classe(s) Terapeutica(s): " + this.classesTerapeuticas
+				+ "\n- Categorias: " + this.categorias;
 	}
 
 }

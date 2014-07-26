@@ -1,6 +1,5 @@
 package bularyou.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ import bularyou.util.Mensagens;
 /**
  * Camada de visão que inicia a aplicação.
  * 
- * @author gustavo
+ * @author gustavo, fausto, alisson
  *
  */
 public class Startup {
@@ -78,18 +77,39 @@ public class Startup {
 					String pesquisar = entrada.next();
 
 					System.out.println(usuarioControlador.pesquisar(
-							new Usuario(pesquisar), Constantes.CRITEIRO_ID));
+							new Usuario(pesquisar), Constantes.CRITERIO_ID));
 				} else if (opcaoUsuario.equals("3")) {
+					
 					List<Usuario> usuarios = usuarioControlador
 							.listarUsuarios();
 					usuarios.forEach(System.out::println);
 
 				} else if (opcaoUsuario.equals("4")) {
+					System.out.println(Mensagens.INPUT_ATUALIZAR_USUARIO);
+					String pesquisar = entrada.next();
+
+					Usuario atualizar = usuarioControlador.pesquisar(new Usuario(
+							pesquisar), Constantes.CRITERIO_ID);
+							
+					if(atualizar != null) {
+						System.out.println(Mensagens.MENSAGEM_SENHA_NOVA);
+						String senha = entrada.next();
+						
+						System.out.println(Mensagens.INPUT_NOVO_NOME);
+						String nome = entrada.next();
+						
+						atualizar.setNome(nome);
+						atualizar.setSenha(senha);
+						
+						usuarioControlador.salvar(atualizar);
+					}
+					
+				} else if (opcaoUsuario.equals("5")) {
 					System.out.println(Mensagens.INPUT_REMOVER_NOME);
 					String pesquisar = entrada.next();
 
 					Usuario remover = usuarioControlador.pesquisar(new Usuario(
-							pesquisar), Constantes.CRITEIRO_ID);
+							pesquisar), Constantes.CRITERIO_ID);
 
 					usuarioControlador.remover(remover);
 				} else {
@@ -110,23 +130,21 @@ public class Startup {
 					System.out.println(Mensagens.NOME_MEDICAMENTO);
 					String nome = entrada.next();
 
-					// TODO Colocar o restante das mensagens no arquivo de msg.
-
-					System.out.println("Informe a descrição do medicamento:");
+					System.out.println(Mensagens.DESCRICAO_MEDICAMENTO);
 					String descricao = entrada.next();
 
 					System.out
-							.println("Informe o valor de compra do medicamento:");
+							.println(Mensagens.VALOR_COMPRA_MEDICAMENTO);
 					Double valorCompra = Double.parseDouble(entrada.next());
 
 					System.out
-							.println("Informe o valor de venda do medicamento:");
+							.println(Mensagens.VALOR_VENDA_MEDICAMENTO);
 					Double valorVenda = Double.parseDouble(entrada.next());
 
-					System.out.println("Informa o fabricante:");
+					System.out.println(Mensagens.FABRICANTE_MEDICAMENTO);
 					String fabricante = entrada.next();
 
-					System.out.println("Necessita de receita? (S/N)");
+					System.out.println(Mensagens.FLAG_RECEITA_MEDICAMENTO);
 					String receita = entrada.next();
 					boolean necessitaReceita = false;
 
@@ -134,26 +152,26 @@ public class Startup {
 						necessitaReceita = true;
 					}
 
-					System.out.println("Informe o tipo da receita:");
+					System.out.println(Mensagens.TIPO_RECEITA_MEDICAMENTO);
 					String tipoReceita = entrada.next();
 
 					System.out
-							.println("Informe se exite interação medicamentosa:");
+							.println(Mensagens.INTERACAO_MEDICAMENTO);
 					String interacao = entrada.next();
 
-					System.out.println("Informe a posologia:");
+					System.out.println(Mensagens.POSOLOGIA_MEDICAMENTO);
 					String posologia = entrada.next();
 
-					System.out.println("Informe o(s) principio(s) ativo:");
+					System.out.println(Mensagens.PRINCIPIOS_ATIVOS_MEDICAMENTO);
 					String principiosAtivo = entrada.next();
 
-					System.out.println("Informe indicação:");
+					System.out.println(Mensagens.INDICACAO_MEDICAMENTO);
 					String indicacoes = entrada.next();
 
-					System.out.println("informe classe(s) terapeutica:");
+					System.out.println(Mensagens.CLASSES_TERAPEUTICAS_MEDICAMENTO);
 					String classesTerapeuticas = entrada.next();
 
-					System.out.println("Informe a(s) categoria(s):");
+					System.out.println(Mensagens.CATEGORIAS_MEDICAMENTO);
 					String categorias = entrada.next();
 
 					medicamentoController.salvar(new Medicamento(id, nome,
@@ -162,7 +180,101 @@ public class Startup {
 							tipoReceita, interacao, posologia, principiosAtivo,
 							indicacoes, classesTerapeuticas, categorias));
 
-					// TODO escrever o resto das opções do CRUD...
+				} else if(opcaoMedicamento.equals("2")) {
+					
+					System.out.println(Mensagens.MEDICAMENTO_PESQUISAR_ID);
+					String idMedicamento = entrada.next();
+					Medicamento temp = medicamentoController.pesquisar(
+							new Medicamento(idMedicamento), Constantes.CRITERIO_ID);
+					if(temp != null) {
+						System.out.println(temp);
+					}
+					
+				} else if(opcaoMedicamento.equals("3")) {
+					
+					System.out.println(Mensagens.MEDICAMENTO_PESQUISAR_NOME);
+					String nomeMedicamento = entrada.next();
+					Medicamento temp = new Medicamento("pesquisa");
+					temp.setNome(nomeMedicamento);
+					temp = medicamentoController.pesquisar(temp, 
+							Constantes.CRITERIO_NOME);
+					if(temp != null) {
+						System.out.println(temp);
+					}
+
+				} else if(opcaoMedicamento.equals("4")) {
+					
+					List<Medicamento> medicamentos = 
+							medicamentoController.listarMedicamentos();
+					medicamentos.forEach(System.out::println);
+					
+				} else if(opcaoMedicamento.equals("5")) {
+					
+					System.out.println(Mensagens.MEDICAMENTO_PESQUISAR_ID);
+					String idMedicamento = entrada.next();
+					Medicamento medicamentoAtualizar = medicamentoController.pesquisar(
+							new Medicamento(idMedicamento), Constantes.CRITERIO_ID);
+					
+					if(medicamentoAtualizar != null) {
+
+						System.out.println(Mensagens.NOME_MEDICAMENTO);
+						String nome = entrada.next();
+
+						System.out.println(Mensagens.DESCRICAO_MEDICAMENTO);
+						String descricao = entrada.next();
+
+						System.out
+								.println(Mensagens.VALOR_COMPRA_MEDICAMENTO);
+						Double valorCompra = Double.parseDouble(entrada.next());
+
+						System.out
+								.println(Mensagens.VALOR_VENDA_MEDICAMENTO);
+						Double valorVenda = Double.parseDouble(entrada.next());
+
+						System.out.println(Mensagens.FABRICANTE_MEDICAMENTO);
+						String fabricante = entrada.next();
+
+						System.out.println(Mensagens.FLAG_RECEITA_MEDICAMENTO);
+						String receita = entrada.next();
+						boolean necessitaReceita = false;
+
+						if (receita.equals("S")) {
+							necessitaReceita = true;
+						}
+
+						System.out.println(Mensagens.TIPO_RECEITA_MEDICAMENTO);
+						String tipoReceita = entrada.next();
+
+						System.out
+								.println(Mensagens.INTERACAO_MEDICAMENTO);
+						String interacao = entrada.next();
+
+						System.out.println(Mensagens.POSOLOGIA_MEDICAMENTO);
+						String posologia = entrada.next();
+
+						System.out.println(Mensagens.PRINCIPIOS_ATIVOS_MEDICAMENTO);
+						String principiosAtivo = entrada.next();
+
+						System.out.println(Mensagens.INDICACAO_MEDICAMENTO);
+						String indicacoes = entrada.next();
+
+						System.out.println(Mensagens.CLASSES_TERAPEUTICAS_MEDICAMENTO);
+						String classesTerapeuticas = entrada.next();
+
+						System.out.println(Mensagens.CATEGORIAS_MEDICAMENTO);
+						String categorias = entrada.next();
+						
+						medicamentoController.salvar(new Medicamento(medicamentoAtualizar.getId(), 
+								nome, descricao, valorCompra, valorVenda,
+								new PessoaJuridica(fabricante), necessitaReceita,
+								tipoReceita, interacao, posologia, principiosAtivo,
+								indicacoes, classesTerapeuticas, categorias));
+					}
+					
+				} else if(opcaoMedicamento.equals("6")) {
+					System.out.println(Mensagens.INPUT_REMOVER_MEDICAMENTO_ID);
+					String idMedicamento = entrada.next();
+					medicamentoController.remover(new Medicamento(idMedicamento));
 				}
 
 				break;
