@@ -1,5 +1,7 @@
 package bularyou.domain;
 
+import java.io.Serializable;
+
 import bularyou.interfaces.Entidade;
 import bularyou.security.Papel;
 import bularyou.util.Constantes;
@@ -10,8 +12,9 @@ import bularyou.util.Constantes;
  * @author gustavo
  *
  */
-public class Usuario implements Entidade {
+public class Usuario implements Entidade, Serializable {
 
+	private static final long serialVersionUID = -5789558306678466550L;
 	private String login;
 	private String senha;
 	private String nome;

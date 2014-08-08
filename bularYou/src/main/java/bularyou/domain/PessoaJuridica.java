@@ -1,5 +1,7 @@
 package bularyou.domain;
 
+import java.io.Serializable;
+
 import bularyou.util.Constantes;
 
 /**
@@ -8,8 +10,9 @@ import bularyou.util.Constantes;
  * @author Fausto Sousa
  *
  */
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridica extends Pessoa implements Serializable {
 
+	private static final long serialVersionUID = -1465251821503037719L;
 	private String nomeFantasia;
 	private String cnpj;
 	private String inscricaoEstadual;

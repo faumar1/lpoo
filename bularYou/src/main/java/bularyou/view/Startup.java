@@ -28,7 +28,9 @@ public class Startup {
 		controlador.escolherTipoArmazenamento(entrada);
 
 		Usuario logado = null;
-
+		UsuarioController usuarioControlador = new UsuarioController(
+				controlador.isArquivo());
+		
 		do {
 			System.out.println(Mensagens.MENSAGEM_LOGIN);
 			String loginUser = entrada.next();
@@ -36,13 +38,11 @@ public class Startup {
 			System.out.println(Mensagens.MENSAGEM_SENHA);
 			String senhaUser = entrada.next();
 
-			logado = UsuarioController.autenticar(loginUser, senhaUser,
-					controlador.isArquivo());
+			logado = usuarioControlador.autenticar(loginUser, senhaUser);
 
 		} while (logado == null);
 
-		UsuarioController usuarioControlador = new UsuarioController(logado,
-				controlador.isArquivo());
+		usuarioControlador.setUsuarioPermissao(logado);
 
 		MedicamentoController medicamentoController = new MedicamentoController(
 				logado, controlador.isArquivo());

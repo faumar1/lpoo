@@ -18,7 +18,6 @@ import bularyou.util.Mensagens;
  *
  */
 public class UsuarioServico extends GenericoServico {
-	private static List<Usuario> cadastrados;
 
 	/**
 	 * Construtor.
@@ -26,49 +25,42 @@ public class UsuarioServico extends GenericoServico {
 	 * @param usuario
 	 */
 	public UsuarioServico(Usuario usuario, boolean arquivo) {
-		super(usuario, arquivo);
+		super(usuario, arquivo, Usuario.class);
 	}
 
 	/**
 	 * Autentica um Usuário no sistema.
 	 */
-	public static Usuario autenticar(String login, String senha, boolean arquivo) {
-		if (arquivo) {
-			return autenticarArquivo(login, senha);
-		} else {
+	public Usuario autenticar(String login, String senha) 
+			throws BusinessException{
+		
+		List<Usuario> usuarios = listarUsuarios();
+		if(usuarios == null || usuarios.isEmpty()) {
 			inicializarUsuariosVolateis();
-			return autenticarVolatil(login, senha);
 		}
-	}
-	
-	private static Usuario autenticarArquivo(String login, String senha) {
-		return null;
+		return autenticarUsuario(login, senha);
 	}
 
-	private static void inicializarUsuariosVolateis() {
-		cadastrados = new ArrayList<>();
-
+	private void inicializarUsuariosVolateis() {
 		Usuario admin = new Usuario("admin", "321", "Administrador",
 				Papel.ADMINISTRADOR);
 		Usuario usuario = new Usuario("neymarjr", "123", "Neymar",
 				Papel.USUARIO);
 
-		cadastrados.add(admin);
-		cadastrados.add(usuario);
+		salvarUsuario(admin);
+		salvarUsuario(usuario);
 	}
 
-	private static Usuario autenticarVolatil(String login, String senha) {
+	private Usuario autenticarUsuario(String login, String senha) {
 		Usuario logar = new Usuario(login, senha);
 		Usuario logado = null;
 
-		if (cadastrados.contains(logar)) {
-			int index = cadastrados.indexOf(logar);
-			logado = cadastrados.get(index);
-		} else {
+		try {
+			logado = this.pesquisar(logar, "id");
+			return logado;
+		} catch (BusinessException e) {
 			throw new BusinessException(Mensagens.USUARIO_INEXISTENTE);
 		}
-
-		return logado;
 	}
 
 	/**

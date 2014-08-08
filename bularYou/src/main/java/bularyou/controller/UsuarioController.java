@@ -5,6 +5,7 @@ import java.util.List;
 import bularyou.business.UsuarioServico;
 import bularyou.domain.Usuario;
 import bularyou.exception.BusinessException;
+import bularyou.security.Papel;
 import bularyou.util.Mensagens;
 
 /**
@@ -20,6 +21,12 @@ public class UsuarioController {
 	public UsuarioController(Usuario usuario, boolean arquivo) {
 		this.servico = new UsuarioServico(usuario, arquivo);
 	}
+	
+	public UsuarioController(boolean arquivo) {
+		Usuario superUser = new Usuario("superUser");
+		superUser.setPapel(Papel.ADMINISTRADOR);
+		this.servico = new UsuarioServico(superUser, arquivo);
+	}
 
 	/**
 	 * Autentica um usuário no sistema.
@@ -29,10 +36,10 @@ public class UsuarioController {
 	 * @param arquivo
 	 * @return Usuario
 	 */
-	public static Usuario autenticar(String login, String senha, boolean arquivo) {
+	public Usuario autenticar(String login, String senha) {
 		Usuario autenticado = null;
 		try {
-			autenticado = UsuarioServico.autenticar(login, senha, arquivo);
+			autenticado = servico.autenticar(login, senha);
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 		}
@@ -93,5 +100,9 @@ public class UsuarioController {
 		} catch (BusinessException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void setUsuarioPermissao(Usuario usuario) {
+		servico.setUsuarioPermissao(usuario);
 	}
 }

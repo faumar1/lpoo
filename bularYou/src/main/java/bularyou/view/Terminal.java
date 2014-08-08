@@ -6,6 +6,7 @@ public class Terminal {
 		System.out.println("Informe uma das opções abaixo:");
 		System.out.println("1 - Usuários");
 		System.out.println("2 - Medicamentos");
+		System.out.println("0 - Sair");
 	}
 	
 	public static void genericoMenu() {

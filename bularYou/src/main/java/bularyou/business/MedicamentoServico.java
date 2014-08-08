@@ -24,7 +24,7 @@ public class MedicamentoServico extends GenericoServico {
 	 * @param usuario
 	 */
 	public MedicamentoServico(Usuario usuario, boolean arquivo) {
-		super(usuario, arquivo);
+		super(usuario, arquivo, Medicamento.class);
 	}
 
 	/**

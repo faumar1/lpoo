@@ -1,5 +1,7 @@
 package bularyou.domain;
 
+import java.io.Serializable;
+
 import bularyou.util.Constantes;
 
 /**
@@ -8,8 +10,9 @@ import bularyou.util.Constantes;
  * @author Fausto Sousa, Alisson Sena
  *
  */
-public class Medicamento extends Produto {
+public class Medicamento extends Produto implements Serializable {
 
+	private static final long serialVersionUID = -4666333499247759816L;
 	private boolean necessitaReceita;
 	private String tipoReceita;
 	private String interacao;

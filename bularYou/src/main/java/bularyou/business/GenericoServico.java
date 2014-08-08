@@ -20,11 +20,12 @@ public abstract class GenericoServico {
 	private Usuario usuario;
 	private PersistenciaDao persistencia;
 
-	public GenericoServico(Usuario usuario, boolean arquivo) {
+	public GenericoServico(Usuario usuario, boolean arquivo, 
+			Class<? extends Entidade> classe) {
 		this.usuario = usuario;
 
 		if (arquivo) {
-			this.persistencia = new PersistenciaArquivo();
+			this.persistencia = new PersistenciaArquivo(classe);
 		} else {
 			this.persistencia = new GenericoPersistencia();
 		}
@@ -71,5 +72,9 @@ public abstract class GenericoServico {
 		}
 
 		return resultado;
+	}
+	
+	public void setUsuarioPermissao(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
